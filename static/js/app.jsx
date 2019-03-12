@@ -1,8 +1,9 @@
-import React from "react";;
+import React from "react";
+import DickCanvas from "./components/dickcanvas/dickcanvas.jsx";
 
 class App extends React.Component {
   render () {
-    return <p> Hello React!</p>;
+    return <DickCanvas/>;
   }
 }
 
