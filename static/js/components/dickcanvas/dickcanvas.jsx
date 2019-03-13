@@ -1,4 +1,6 @@
 import React from "react";
+import Dispatcher from '../../utils/dispatcher.jsx';
+import Actions from '../../utils/constants.jsx'
 import '../../../styles/components/dickcanvas/dickcanvas.scss'
 
 class DickCanvas extends React.Component {
@@ -6,9 +8,18 @@ class DickCanvas extends React.Component {
         super(props)
         
         this.state = {
-            width: document.body.clientWidth - 40,
+            width: document.body.clientWidth - 666,
             height: document.body.clientHeight - 40
-          } 
+          }
+        Dispatcher.register(this._registerToActions.bind(this));
+    }
+
+    _registerToActions(action) {
+        switch(action.actionType) {
+            case Actions.CLEAR_CANVAS:
+                this.reset();
+            break;
+        }
     }
 
     componentDidMount() {
@@ -89,14 +100,14 @@ class DickCanvas extends React.Component {
         this.setState({
             mode: 'draw',
             pen : 'up',
-            lineWidth : 10,
+            lineWidth : 1,
             penColor : 'black'
         })
 
         this.ctx = this.refs.canvas.getContext('2d')
         this.ctx.fillStyle="white"
-        this.ctx.fillRect(0,0,800,600)
-        this.ctx.lineWidth = 10
+        this.ctx.fillRect(0,0,this.state.width,this.state.height)
+        this.ctx.lineWidth = 1
     }
 
     render() {
