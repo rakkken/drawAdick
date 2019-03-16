@@ -65,9 +65,8 @@ class DickCanvas extends React.Component {
         });
     }
 
-    drawing(e) { //if the pen is down in the canvas, draw/erase
+    drawingMouse(e) { //if the pen is down in the canvas, draw/erase
         e.preventDefault();
-        e.stopPropagation();
 
         if (this.state.pen === 'down') {
 
@@ -84,24 +83,47 @@ class DickCanvas extends React.Component {
                 this.ctx.strokeStyle = '#ffffff'
             }
 
-            this.ctx.moveTo(this.state.penCoords[0], this.state.penCoords[1]) //move to old position
-            this.ctx.lineTo(e.nativeEvent.offsetX, e.nativeEvent.offsetY) //draw to new position
+            this.ctx.moveTo(this.state.penCoords[0], this.state.penCoords[1])
+            this.ctx.lineTo(e.nativeEvent.offsetX, e.nativeEvent.offsetY)
             this.ctx.stroke();
 
-            this.setState({ //save new position 
+            this.setState({
                 penCoords: [e.nativeEvent.offsetX, e.nativeEvent.offsetY]
             });
         }
     }
 
-    penDown(e) { //mouse is down on the canvas
+    drawingThumb(e) {
+        e.preventDefault();
+        var x = e.changedTouches[0].pageX - this.modX/2;
+        var y = e.changedTouches[0].pageY;
+        this.setState({
+            pen: 'down',
+            penCoords: [x, y]
+        });
+        this.ctx.lineTo(x, y);
+        this.ctx.stroke();
+    }
+
+    mouseDown(e) {
         this.setState({
             pen: 'down',
             penCoords: [e.nativeEvent.offsetX, e.nativeEvent.offsetY]
         });
     }
 
-    penUp() { //mouse is up on the canvas
+    thumbDown(e) {
+        this.ctx.beginPath();
+        var x = e.changedTouches[0].pageX - this.modX/2;
+        var y = e.changedTouches[0].pageY;
+        this.setState({
+            pen: 'down',
+            penCoords: [x, y]
+        });
+        this.ctx.moveTo(x, y)
+    }
+
+    up() { //mouse is up on the canvas
         this.setState({
             pen: 'up'
         });
@@ -143,12 +165,14 @@ class DickCanvas extends React.Component {
         return (
             <div className="maindiv">
                 <canvas id='drawADick' ref="canvas" width={this.state.width} height={this.state.height} className="canvas"
-                    onMouseMove={(e) => this.drawing(e)}
-                    onMouseDown={(e) => this.penDown(e)}
-                    onMouseUp={(e) => this.penUp(e)}
+                    onMouseMove={(e) => this.drawingMouse(e)}
+                    onMouseDown={(e) => this.mouseDown(e)}
+                    onMouseUp={(e) => this.up(e)}
 
-                    onTouchStart={(e) => this.penDown(e)}
-                    onTouchEnd={(e) => this.penUp(e)}>
+                    onTouchMove={(e) => this.drawingThumb(e)}
+                    onTouchStart={(e) => this.thumbDown(e)}
+                    onTouchEnd={(e) => this.up(e)}
+                >
                 </canvas>
             </div>
         )
