@@ -1,11 +1,12 @@
 .canvas {
     border: 1px solid #333;
     margin: 10px 0px;
+    z-index: 9999;
 }
 
 .maindiv {
     padding: 2px;
     margin: auto;
     width: 100%;
-    padding-left: 222px;
+    padding-left: 150px;
 }

@@ -13,6 +13,13 @@ class Actions {
             payload: null
         });
     }
+
+    resize() {
+        Dispatcher.dispatch({
+            actionType: ActionTypes.RESIZE_CANVAS,
+            payload: null
+        });
+    }
  
 }
  
