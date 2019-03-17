@@ -8,6 +8,7 @@ class DickCanvas extends React.Component {
     constructor(props) {
         super(props);
         this.resizeInProgress = false;
+        this.saveInProgress = false;
         this.modX = 300;
         this.modY = 120;
         this.aspectRatio = 1.333;
@@ -34,11 +35,18 @@ class DickCanvas extends React.Component {
     }
 
     save() {
-        axios({
-            method: 'post',
-            url: '/save',
-            data: this.getImageData()
-        });
+        if (!this.saveInProgress) {
+            this.saveInProgress = true;
+            axios({
+                method: 'post',
+                url: '/save',
+                data: this.getImageData()
+            }).then(res => {
+                this.saveInProgress = false;
+            }).catch(error => {
+                this.saveInProgress = false;
+            });
+        }
     }
 
     resize() {
