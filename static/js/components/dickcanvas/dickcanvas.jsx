@@ -32,9 +32,11 @@ class DickCanvas extends React.Component {
         if (!this.resizeInProgress) {
             this.resizeInProgress = true;
             var imageData = this.getImageData();
+            var newWidth = document.body.clientWidth - this.modX;
+            var newheight = document.body.clientHeight - this.modY;
             this.setState({
-                width: document.body.clientWidth - this.modX,
-                height: document.body.clientHeight - this.modY
+                width: newWidth,
+                height: newheight
             })
             this.redraw(imageData);
         }
@@ -95,7 +97,7 @@ class DickCanvas extends React.Component {
 
     drawingThumb(e) {
         e.preventDefault();
-        var x = e.changedTouches[0].pageX - this.modX/2;
+        var x = e.changedTouches[0].pageX - this.modX / 2;
         var y = e.changedTouches[0].pageY;
         this.setState({
             pen: 'down',
@@ -114,7 +116,7 @@ class DickCanvas extends React.Component {
 
     thumbDown(e) {
         this.ctx.beginPath();
-        var x = e.changedTouches[0].pageX - this.modX/2;
+        var x = e.changedTouches[0].pageX - this.modX / 2;
         var y = e.changedTouches[0].pageY;
         this.setState({
             pen: 'down',
@@ -162,9 +164,17 @@ class DickCanvas extends React.Component {
     }
 
     render() {
+        var w = this.state.width;
+        var h = this.state.height;
+        var aspectRatio = 1.333;
+        var nh = w / aspectRatio;
+        if (nh > h) {
+            nh = h;
+            w = h * aspectRatio;
+        }
         return (
             <div className="maindiv">
-                <canvas id='drawADick' ref="canvas" width={this.state.width} height={this.state.height} className="canvas"
+                <canvas id='drawADick' ref="canvas" width={w} height={nh} className="canvas"
                     onMouseMove={(e) => this.drawingMouse(e)}
                     onMouseDown={(e) => this.mouseDown(e)}
                     onMouseUp={(e) => this.up(e)}
