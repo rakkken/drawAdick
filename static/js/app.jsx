@@ -2,6 +2,7 @@ import React from "react";
 import DickCanvas from "./components/dickcanvas/dickcanvas.jsx";
 import DickButton from "./components/dickbutton/dickbutton.jsx";
 import Actions from './utils/actions.jsx';
+import '../styles/app.scss'
 
 class App extends React.Component {
 
@@ -30,25 +31,33 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className='app'>
         <table>
-          <tr>
-            <td>
+          <thead></thead>
+          <tbody>
+            <tr>
+              <td>
+                <div className='topBar'>
 
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <div>
-              <DickCanvas />
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td>
-            <DickButton css='clear' text='CLEAR' action='clear'/>
-            </td>
-          </tr>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div>
+                  <DickCanvas />
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div className='bottomBar'>
+                  <DickButton css='save' text='SAVE' action='save' />
+                  <DickButton css='clear' text='CLEAR' action='clear' />
+                </div>
+              </td>
+            </tr>
+          </tbody>
         </table>
       </div>
     );

@@ -1,4 +1,5 @@
 import React from "react";
+import axios from 'axios';
 import Dispatcher from '../../utils/dispatcher.jsx';
 import Actions from '../../utils/constants.jsx'
 import '../../../styles/components/dickcanvas/dickcanvas.scss'
@@ -8,7 +9,9 @@ class DickCanvas extends React.Component {
         super(props);
         this.resizeInProgress = false;
         this.modX = 300;
-        this.modY = 40;
+        this.modY = 120;
+        this.aspectRatio = 1.333;
+        this.maxHeight = 80;
 
         this.state = {
             width: document.body.clientWidth - this.modX,
@@ -24,8 +27,18 @@ class DickCanvas extends React.Component {
                 this.reset();
             case Actions.RESIZE_CANVAS:
                 this.resize();
+            case Actions.SAVE_DATA:
+                this.save();
                 break;
         }
+    }
+
+    save() {
+        axios({
+            method: 'post',
+            url: '/save',
+            data: this.getImageData()
+        });
     }
 
     resize() {
@@ -172,6 +185,7 @@ class DickCanvas extends React.Component {
             nh = h;
             w = h * aspectRatio;
         }
+
         return (
             <div className="maindiv">
                 <canvas id='drawADick' ref="canvas" width={w} height={nh} className="canvas"
