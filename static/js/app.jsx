@@ -32,33 +32,29 @@ class App extends React.Component {
   render() {
     return (
       <div className='app'>
-        <table>
-          <thead></thead>
-          <tbody>
-            <tr>
-              <td>
-                <div className='topBar'>
-
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div>
-                  <DickCanvas />
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div className='bottomBar'>
-                  <DickButton css='save' text='SAVE' action='save' />
-                  <DickButton css='clear' text='CLEAR' action='clear' />
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <div>
+          <div className="row">
+            <div className="col">
+              <div className='topBar'>
+              </div>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col">
+              <div>
+                <DickCanvas />
+              </div>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col">
+              <div className='bottomBar'>
+                <DickButton css='save' text='SAVE' action='save' />
+                <DickButton css='clear' text='CLEAR' action='clear' />
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
