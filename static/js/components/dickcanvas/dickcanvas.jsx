@@ -13,12 +13,12 @@ class DickCanvas extends React.Component {
         this.modY = 300;
         this.aspectRatio = 1.333;
         this.maxHeight = 80;
+        this.brushSizeLimit = 12;
 
         this.state = {
             width: document.body.clientWidth - this.modX,
             height: document.body.clientHeight - this.modY
         }
-        Dispatcher.register(this._registerToActions.bind(this));
         Dispatcher.register(this._registerToActions.bind(this));
     }
 
@@ -26,10 +26,21 @@ class DickCanvas extends React.Component {
         switch (action.actionType) {
             case Actions.CLEAR_CANVAS:
                 this.reset();
+                break;
             case Actions.RESIZE_CANVAS:
                 this.resize();
+                break;
             case Actions.SAVE_DATA:
                 this.save();
+                break;
+            case Actions.DRAW_SIZE:
+                this.changeDrawSize(action.payload);
+                break;
+            case Actions.DRAW_SIZE_UP:
+                this.penSizeUp();
+                break;
+            case Actions.DRAW_SIZE_DOWN:
+                this.penSizeDown();
                 break;
         }
     }
@@ -61,6 +72,12 @@ class DickCanvas extends React.Component {
             })
             this.redraw(imageData);
         }
+    }
+
+    changeDrawSize(size) {
+        this.setState({
+            lineWidth: this.state.lineWidth = size
+        });
     }
 
     redraw(imageData) {
@@ -152,16 +169,20 @@ class DickCanvas extends React.Component {
         });
     }
 
-    penSizeUp() { //increase pen size button clicked
-        this.setState({
-            lineWidth: this.state.lineWidth += 5
-        });
+    penSizeUp() {
+        if (this.brushSizeLimit > this.state.lineWidth) {
+            this.setState({
+                lineWidth: this.state.lineWidth += 1
+            });
+        }
     }
 
-    penSizeDown() {//decrease pen size button clicked
-        this.setState({
-            lineWidth: this.state.lineWidth -= 5
-        });
+    penSizeDown() {
+        if (this.state.lineWidth > 1) {
+            this.setState({
+                lineWidth: this.state.lineWidth -= 1
+            });
+        }
     }
 
     setColor(c) { //a color button was clicked
@@ -181,7 +202,6 @@ class DickCanvas extends React.Component {
         this.ctx = this.refs.canvas.getContext('2d');
         this.ctx.fillStyle = "white";
         this.ctx.fillRect(0, 0, this.state.width, this.state.height);
-        this.ctx.lineWidth = 1;
     }
 
     render() {

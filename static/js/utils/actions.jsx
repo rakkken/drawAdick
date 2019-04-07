@@ -3,8 +3,8 @@ import ActionTypes from './constants.jsx';
 
 class Actions {
 
-    execute(action) {
-        eval('this.' + action + '()');
+    execute(action, data) {
+        eval('this.' + action + '('+data+')');
     }
 
     clear() {
@@ -28,6 +28,26 @@ class Actions {
         });
     }
 
+    drawSize(data) {
+        Dispatcher.dispatch({
+            actionType: ActionTypes.DRAW_SIZE,
+            payload: data
+        });
+    }
+
+    drawSizeUp() {
+        Dispatcher.dispatch({
+            actionType: ActionTypes.DRAW_SIZE_UP,
+            payload: null
+        });
+    }
+
+    drawSizeDown() {
+        Dispatcher.dispatch({
+            actionType: ActionTypes.DRAW_SIZE_DOWN,
+            payload: null
+        });
+    }
 }
 
 export default new Actions();

@@ -3,6 +3,7 @@ import DickCanvas from "./components/dickcanvas/dickcanvas.jsx";
 import DickButton from "./components/dickbutton/dickbutton.jsx";
 import Actions from './utils/actions.jsx';
 import '../styles/app.scss'
+import DickSelect from "./components/dickSelect/dickselect.jsx";
 
 class App extends React.Component {
 
@@ -51,6 +52,7 @@ class App extends React.Component {
             <div className="col">
               <div className='bottomBar'>
                 <DickButton css='save' text='SAVE' action='save' />
+                <DickSelect css='drawSize' action='drawSize' options={[1,2,3,4,5,6,7,8,9,10,11,12]}/>
                 <DickButton css='clear' text='CLEAR' action='clear' />
               </div>
             </div>
