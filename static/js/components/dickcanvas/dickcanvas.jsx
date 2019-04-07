@@ -1,7 +1,9 @@
 import React from "react";
+import ReactDOM from 'react-dom';
 import axios from 'axios';
 import Dispatcher from '../../utils/dispatcher.jsx';
 import Actions from '../../utils/constants.jsx'
+import DoActions from '../../utils/actions.jsx'
 import '../../../styles/components/dickcanvas/dickcanvas.scss'
 
 class DickCanvas extends React.Component {
@@ -20,6 +22,10 @@ class DickCanvas extends React.Component {
             height: document.body.clientHeight - this.modY
         }
         Dispatcher.register(this._registerToActions.bind(this));
+    }
+
+    wheel(event) {
+        event.wheelDelta < 0 ? DoActions.execute('drawSizeUp') : DoActions.execute('drawSizeDown');
     }
 
     _registerToActions(action) {
@@ -91,6 +97,7 @@ class DickCanvas extends React.Component {
 
     componentDidMount() {
         this.reset();
+        ReactDOM.findDOMNode(this).addEventListener('wheel', this.wheel);
     }
 
     draw(e) { //response to Draw button click 

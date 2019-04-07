@@ -42,10 +42,11 @@ class DickSelect extends React.Component {
     }
 
     onChange(action, event) {
+        var v = parseInt(event.target.value);
         this.setState({
-            value: this.state.value = event.target.value
+            value: this.state.value = v
         });
-        Actions.execute(action, event.target.value);
+        Actions.execute(action, v);
     }
 
     wheel(event) {
