@@ -1,5 +1,9 @@
 .canvas {
-    border: 1px solid #333;
+    $border: 5px;
+    background: white;
+    background-clip: padding-box;
+    border: solid $border rgb(184, 61, 157);
+    border-radius: 1em;
     margin: 10px 0px;
     z-index: 9999;
 }

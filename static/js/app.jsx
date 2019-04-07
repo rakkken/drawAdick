@@ -36,6 +36,7 @@ class App extends React.Component {
           <div className="row">
             <div className="col">
               <div className='topBar'>
+              <img src="static/graphics/g1678.png" alt="logo" className="logo"/>
               </div>
             </div>
           </div>

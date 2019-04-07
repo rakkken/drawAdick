@@ -9,8 +9,8 @@ class DickCanvas extends React.Component {
         super(props);
         this.resizeInProgress = false;
         this.saveInProgress = false;
-        this.modX = 300;
-        this.modY = 120;
+        this.modX = 0;
+        this.modY = 300;
         this.aspectRatio = 1.333;
         this.maxHeight = 80;
 
