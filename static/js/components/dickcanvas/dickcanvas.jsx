@@ -57,7 +57,8 @@ class DickCanvas extends React.Component {
             axios({
                 method: 'post',
                 url: '/save',
-                data: this.getImageData()
+                headers: {"Content-Type": "application/upload"},
+                data: this.getImageDataAsIMG()
             }).then(res => {
                 this.saveInProgress = false;
             }).catch(error => {
@@ -93,6 +94,10 @@ class DickCanvas extends React.Component {
 
     getImageData() {
         return this.ctx.getImageData(0, 0, this.state.width, this.state.height);
+    }
+
+    getImageDataAsIMG(){
+        return this.refs.canvas.toDataURL('image/jpeg', 1.0);
     }
 
     componentDidMount() {
