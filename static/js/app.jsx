@@ -5,6 +5,7 @@ import Actions from './utils/actions.jsx';
 import '../styles/app.scss'
 import DickSelect from "./components/dickSelect/dickselect.jsx";
 import StyleSelect from "./components/dickSelect/styleselect.jsx";
+import DickPreview from "./components/dickpreview/dickpreview.jsx";
 
 class App extends React.Component {
 
@@ -50,14 +51,30 @@ class App extends React.Component {
             </div>
           </div>
           <div className="row">
+          <div className="col">
+              <div>
+                <DickPreview css={'preview'} action={'readLast/0'}/>
+              </div>
+              <div>
+                <DickPreview css={'preview1'} action={'readLast/1'}/>
+              </div>
+              <div>
+                <DickPreview css={'preview2'} action={'readLast/2'}/>
+              </div>
+              <div>
+                <DickPreview css={'preview3'} action={'readLast/3'}/>
+              </div>
+              <div>
+                <DickPreview css={'preview4'} action={'readLast/4'}/>
+              </div>
+              <div>
+                <DickPreview css={'preview5'} action={'readLast/5'}/>
+              </div>
+            </div>
             <div className="col">
               <div>
                 <DickCanvas />
               </div>
-            </div>
-          </div>
-          <div className="row">
-            <div className="col">
               <div className='bottomBar'>
                 <DickButton css='save' text='SAVE' action='save' />
                 <span style={{ marginLeft: this.state.marginBeetwenButtons }}></span>

@@ -24,10 +24,12 @@ def save():
     db.session.commit()
     return 'success'
 
-@app.route('/readLast', methods=['GET'])
-def readLast():
-    sql = text("select encode(img::bytea, 'escape') from images order by id desc limit 1")
+@app.route('/readLast/<id>', methods=['GET'])
+def readLast(id):
+    sql = text("select encode(img::bytea, 'escape') from images order by id desc limit 6")
     result = db.engine.execute(sql)
     img = [row[0] for row in result]
-    # encodedImg = row[0].split(';')[1]
-    return img[0]
+    _id = int(id)
+    if _id > 5:
+        _id = 5
+    return img[_id]
