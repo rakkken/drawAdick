@@ -16,6 +16,7 @@ class DickCanvas extends React.Component {
         this.aspectRatio = 1.333;
         this.maxHeight = 80;
         this.brushSizeLimit = 12;
+        this.strokeStyle = '#ffffff';
 
         this.state = {
             width: document.body.clientWidth - this.modX,
@@ -47,6 +48,9 @@ class DickCanvas extends React.Component {
                 break;
             case Actions.DRAW_SIZE_DOWN:
                 this.penSizeDown();
+                break;
+            case Actions.SET_COLOR:
+                this.setColor(action.payload);
                 break;
         }
     }
@@ -132,7 +136,7 @@ class DickCanvas extends React.Component {
             }
 
             if (this.state.mode === 'erase') {
-                this.ctx.strokeStyle = '#ffffff'
+                this.ctx.strokeStyle = this.strokeStyle
             }
 
             this.ctx.moveTo(this.state.penCoords[0], this.state.penCoords[1])
@@ -207,7 +211,7 @@ class DickCanvas extends React.Component {
         this.setState({
             mode: 'draw',
             pen: 'up',
-            lineWidth: 1,
+            lineWidth: 3,
             penColor: 'black'
         });
 

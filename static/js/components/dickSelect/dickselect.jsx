@@ -9,7 +9,7 @@ class DickSelect extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            value: props.options[0]
+            value: props.options[2]
         }
 
         Dispatcher.register(this._registerToActions.bind(this));
@@ -55,7 +55,7 @@ class DickSelect extends React.Component {
 
     reset() {
         this.setState({
-            value: this.state.value = this.props.options[0]
+            value: this.state.value = this.props.options[2]
         });
     }
 

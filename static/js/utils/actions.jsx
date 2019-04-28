@@ -4,7 +4,11 @@ import ActionTypes from './constants.jsx';
 class Actions {
 
     execute(action, data) {
-        eval('this.' + action + '('+data+')');
+        if (typeof data === 'string') {
+            eval('this.' + action + '("' + data + '")');
+        } else {
+            eval('this.' + action + '(' + data + ')');
+        }
     }
 
     clear() {
@@ -46,6 +50,13 @@ class Actions {
         Dispatcher.dispatch({
             actionType: ActionTypes.DRAW_SIZE_DOWN,
             payload: null
+        });
+    }
+
+    setColor(data) {
+        Dispatcher.dispatch({
+            actionType: ActionTypes.SET_COLOR,
+            payload: data
         });
     }
 }

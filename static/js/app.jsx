@@ -4,8 +4,16 @@ import DickButton from "./components/dickbutton/dickbutton.jsx";
 import Actions from './utils/actions.jsx';
 import '../styles/app.scss'
 import DickSelect from "./components/dickSelect/dickselect.jsx";
+import StyleSelect from "./components/dickSelect/styleselect.jsx";
 
 class App extends React.Component {
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      marginBeetwenButtons: '5px'
+    }
+  }
 
   componentDidMount() {
     window.addEventListener('resize', function (e) {
@@ -37,7 +45,7 @@ class App extends React.Component {
           <div className="row">
             <div className="col">
               <div className='topBar'>
-              <img src="static/graphics/g1678.png" alt="logo" className="logo"/>
+                <img src="static/graphics/g1678.png" alt="logo" className="logo" />
               </div>
             </div>
           </div>
@@ -52,7 +60,11 @@ class App extends React.Component {
             <div className="col">
               <div className='bottomBar'>
                 <DickButton css='save' text='SAVE' action='save' />
-                <DickSelect css='drawSize' action='drawSize' options={[1,2,3,4,5,6,7,8,9,10,11,12]}/>
+                <span style={{ marginLeft: this.state.marginBeetwenButtons }}></span>
+                <DickSelect css='drawSize' action='drawSize' options={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]} />
+                <span style={{ marginLeft: this.state.marginBeetwenButtons }}></span>
+                <StyleSelect css='setColor' action='setColor' options={[{ class: 'black', value: 'Black' }, { class: 'brown', value: 'Brown' }, { class: 'yellow', value: 'Yellow' }, { class: 'pink', value: 'Pink' }, { class: 'grey', value: 'Grey' }]} />
+                <span style={{ marginLeft: this.state.marginBeetwenButtons }}></span>
                 <DickButton css='clear' text='CLEAR' action='clear' />
               </div>
             </div>
