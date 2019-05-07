@@ -37,8 +37,10 @@ class DickPreview extends React.Component {
 
     load() {
         axios({
-            method: 'get',
-            url: '/' + this.props.action
+            method: 'post',
+            url: '/' + this.props.action,
+            headers: {"X-CSRFToken": csrf_token},
+            data: {}
         }).then(res => {
             this.setState({
                 img: res.data

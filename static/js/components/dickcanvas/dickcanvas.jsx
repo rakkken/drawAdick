@@ -61,7 +61,7 @@ class DickCanvas extends React.Component {
             axios({
                 method: 'post',
                 url: '/save',
-                headers: {"Content-Type": "application/upload"},
+                headers: {"Content-Type": "application/upload", "X-CSRFToken": csrf_token},
                 data: this.getImageDataAsIMG()
             }).then(res => {
                 this.saveInProgress = false;

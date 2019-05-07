@@ -1,20 +1,25 @@
 import os
 from flask import Flask
 from flask import request
+from flask import render_template
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import text
+from flask_wtf.csrf import CSRFProtect
 import base64
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'thisisAroxySecretKEY#'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['SQLALCHEMY_DATABASE_URI']
 db = SQLAlchemy(app)
+csrf = CSRFProtect(app)
+csrf.init_app(app)
 
 from models import Images
 
 @app.route('/')
 def root():
-    return app.send_static_file('index.html')
+    return render_template('index.html')
 
 @app.route('/save', methods=['POST'])
 def save():
@@ -24,7 +29,7 @@ def save():
     db.session.commit()
     return 'success'
 
-@app.route('/readLast/<id>', methods=['GET'])
+@app.route('/readLast/<id>', methods=['POST'])
 def readLast(id):
     sql = text("select encode(img::bytea, 'escape') from images order by id desc limit 6")
     result = db.engine.execute(sql)
