@@ -1,4 +1,7 @@
 import React from "react";
+import {
+  BrowserView
+} from "react-device-detect";
 import DickCanvas from "./components/dickcanvas/dickcanvas.jsx";
 import DickButton from "./components/dickbutton/dickbutton.jsx";
 import Actions from './utils/actions.jsx';
@@ -19,6 +22,10 @@ class App extends React.Component {
   componentDidMount() {
     window.addEventListener('resize', function (e) {
       Actions.resize();
+    });
+
+    window.addEventListener('beforeunload', function (e){
+      Actions.save();
     });
 
     var canvas = document.getElementById('drawADick');
@@ -51,6 +58,7 @@ class App extends React.Component {
             </div>
           </div>
           <div className="row">
+          <BrowserView>
           <div className="col">
               <div>
                 <DickPreview css={'preview'} action={'readLast/0'}/>
@@ -71,18 +79,19 @@ class App extends React.Component {
                 <DickPreview css={'preview5'} action={'readLast/5'}/>
               </div>
             </div>
+            </BrowserView>
             <div className="col">
               <div>
                 <DickCanvas />
               </div>
               <div className='bottomBar'>
-                <DickButton css='save' text='SAVE' action='save' />
+                <DickButton css='save' text='dickIT' action='save' />
                 <span style={{ marginLeft: this.state.marginBeetwenButtons }}></span>
                 <DickSelect css='drawSize' action='drawSize' options={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]} />
                 <span style={{ marginLeft: this.state.marginBeetwenButtons }}></span>
                 <StyleSelect css='setColor' action='setColor' options={[{ class: 'black', value: 'Black' }, { class: 'brown', value: 'Brown' }, { class: 'yellow', value: 'Yellow' }, { class: 'pink', value: 'Pink' }, { class: 'grey', value: 'Grey' }]} />
                 <span style={{ marginLeft: this.state.marginBeetwenButtons }}></span>
-                <DickButton css='clear' text='CLEAR' action='clear' />
+                <DickButton css='clear' text='cleanIT' action='clear' />
               </div>
             </div>
           </div>

@@ -56,12 +56,15 @@ class DickCanvas extends React.Component {
     }
 
     save() {
+        if (this.isClean()){
+            return;
+        }
         if (!this.saveInProgress) {
             this.saveInProgress = true;
             axios({
                 method: 'post',
                 url: '/save',
-                headers: {"Content-Type": "application/upload", "X-CSRFToken": csrf_token},
+                headers: { "Content-Type": "application/upload", "X-CSRFToken": csrf_token },
                 data: this.getImageDataAsIMG()
             }).then(res => {
                 this.saveInProgress = false;
@@ -100,7 +103,15 @@ class DickCanvas extends React.Component {
         return this.ctx.getImageData(0, 0, this.state.width, this.state.height);
     }
 
-    getImageDataAsIMG(){
+    isClean() {
+        const pixelBuffer = new Uint32Array(
+            this.getImageData().data.buffer
+        );
+
+        return !pixelBuffer.some(channel => channel !== 0 && channel !== 4294967295);
+    }
+
+    getImageDataAsIMG() {
         return this.refs.canvas.toDataURL('image/jpeg', 1.0);
     }
 
@@ -211,7 +222,7 @@ class DickCanvas extends React.Component {
         this.setState({
             mode: 'draw',
             pen: 'up',
-            lineWidth: 3,
+            lineWidth: 6,
             penColor: 'black'
         });
 
