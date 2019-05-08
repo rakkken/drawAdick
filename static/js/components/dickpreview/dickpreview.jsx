@@ -32,7 +32,7 @@ class DickPreview extends React.Component {
         let self = this;
         setTimeout(function () {
             self.load();
-        }, 2000);
+        }, this.props.timeout);
     }
 
     load() {
