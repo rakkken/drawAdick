@@ -50,6 +50,7 @@ class App extends React.Component {
     return (
       <div className='app'>
         <div>
+        <BrowserView>
           <div className="row">
             <div className="col">
               <div className='topBar'>
@@ -57,6 +58,7 @@ class App extends React.Component {
               </div>
             </div>
           </div>
+          </BrowserView>
           <div className="row">
           <BrowserView>
           <div className="col">
