@@ -1,5 +1,5 @@
 import os
-from flask import Flask
+from flask import Flask, abort
 from flask import request
 from flask import render_template
 from flask_sqlalchemy import SQLAlchemy
@@ -37,4 +37,4 @@ def readLast(id):
     _id = int(id)
     if _id > 5:
         _id = 5
-    return img[_id]
+    return abort(404) if len(img) < _id else img[_id]
