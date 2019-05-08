@@ -10,7 +10,8 @@ class DickPreview extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            img: null
+            img: null,
+            visible: false
         }
 
         Dispatcher.register(this._registerToActions.bind(this));
@@ -39,18 +40,27 @@ class DickPreview extends React.Component {
         axios({
             method: 'post',
             url: '/' + this.props.action,
-            headers: {"X-CSRFToken": csrf_token},
+            headers: { "X-CSRFToken": csrf_token },
             data: {}
         }).then(res => {
             this.setState({
-                img: res.data
+                img: res.data,
+                visible: true
             });
         }).catch(error => {
+            this.setState({
+                visible: false
+            });
         });
     }
 
     render() {
-        return <img className={this.props.css} id={this.props.key} src={this.state.img} />
+        if (this.state.visible) {
+            return <img className={this.props.css} id={this.props.key} src={this.state.img} />
+        } else {
+            return <span />
+        }
+
     }
 }
 
