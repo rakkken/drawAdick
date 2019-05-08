@@ -10,7 +10,7 @@ import base64
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'thisisAroxySecretKEY#'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['SQLALCHEMY_DATABASE_URI']
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 db = SQLAlchemy(app)
 csrf = CSRFProtect(app)
 csrf.init_app(app)
