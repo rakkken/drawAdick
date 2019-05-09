@@ -8,9 +8,30 @@
     margin-right: 0px;
 }
 
+.drawSizeMobile {
+    width: 220px;
+    height: 80px;
+    background: lightseagreen;
+    text-align-last: center;
+    border: none;
+    border-radius: 6px;
+    margin-right: 0px;
+}
+
 .setColor {
     width: 120px;
     height: 40px;
+    background: black;
+    text-align-last: center;
+    border: none;
+    border-radius: 6px;
+    margin-right: 0px;
+    color: white;
+}
+
+.setColorMobile {
+    width: 220px;
+    height: 80px;
     background: black;
     text-align-last: center;
     border: none;

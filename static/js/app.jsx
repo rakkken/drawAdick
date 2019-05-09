@@ -1,6 +1,7 @@
 import React from "react";
 import {
-  BrowserView
+  BrowserView,
+  MobileView
 } from "react-device-detect";
 import DickCanvas from "./components/dickcanvas/dickcanvas.jsx";
 import DickButton from "./components/dickbutton/dickbutton.jsx";
@@ -15,7 +16,8 @@ class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      marginBeetwenButtons: '5px'
+      marginBeetwenButtons: '5px',
+      marginBeetwenButtonsMobile: '30px'
     }
   }
 
@@ -50,7 +52,6 @@ class App extends React.Component {
     return (
       <div className='app'>
         <div>
-        <BrowserView>
           <div className="row">
             <div className="col">
               <div className='topBar'>
@@ -58,7 +59,6 @@ class App extends React.Component {
               </div>
             </div>
           </div>
-          </BrowserView>
           <div className="row">
           <BrowserView>
           <div className="col">
@@ -86,6 +86,7 @@ class App extends React.Component {
               <div>
                 <DickCanvas />
               </div>
+              <BrowserView>
               <div className='bottomBar'>
                 <DickButton css='save' text='dickIT' action='save' />
                 <span style={{ marginLeft: this.state.marginBeetwenButtons }}></span>
@@ -95,6 +96,18 @@ class App extends React.Component {
                 <span style={{ marginLeft: this.state.marginBeetwenButtons }}></span>
                 <DickButton css='clear' text='cleanIT' action='clear' />
               </div>
+              </BrowserView>
+              <MobileView>
+              <div className='bottomBar'>
+                <DickButton css='saveMobile' text='dickIT' action='save' />
+                <span style={{ marginLeft: this.state.marginBeetwenButtonsMobile }}></span>
+                <DickSelect css='drawSizeMobile' action='drawSize' options={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]} />
+                <span style={{ marginLeft: this.state.marginBeetwenButtonsMobile }}></span>
+                <StyleSelect css='setColorMobile' action='setColor' options={[{ class: 'black', value: 'Black' }, { class: 'brown', value: 'Brown' }, { class: 'yellow', value: 'Yellow' }, { class: 'pink', value: 'Pink' }, { class: 'grey', value: 'Grey' }]} />
+                <span style={{ marginLeft: this.state.marginBeetwenButtonsMobile }}></span>
+                <DickButton css='clearMobile' text='cleanIT' action='clear' />
+              </div>
+              </MobileView>
             </div>
           </div>
         </div>

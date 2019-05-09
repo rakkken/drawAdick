@@ -17,6 +17,7 @@ class DickCanvas extends React.Component {
         this.maxHeight = 80;
         this.brushSizeLimit = 12;
         this.strokeStyle = '#ffffff';
+        this.mobileDeviceModY = 200;
 
         this.state = {
             width: document.body.clientWidth - this.modX,
@@ -162,8 +163,8 @@ class DickCanvas extends React.Component {
 
     drawingThumb(e) {
         e.preventDefault();
-        var x = e.changedTouches[0].pageX - this.modX / 2;
-        var y = e.changedTouches[0].pageY;
+        var x = e.changedTouches[0].pageX;
+        var y = e.changedTouches[0].pageY - this.mobileDeviceModY;
         this.setState({
             pen: 'down',
             penCoords: [x, y]
@@ -181,8 +182,8 @@ class DickCanvas extends React.Component {
 
     thumbDown(e) {
         this.ctx.beginPath();
-        var x = e.changedTouches[0].pageX - this.modX / 2;
-        var y = e.changedTouches[0].pageY;
+        var x = e.changedTouches[0].pageX;
+        var y = e.changedTouches[0].pageY - this.mobileDeviceModY;
         this.setState({
             pen: 'down',
             penCoords: [x, y]
