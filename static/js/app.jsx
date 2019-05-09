@@ -1,7 +1,8 @@
 import React from "react";
 import {
   BrowserView,
-  MobileView
+  MobileView,
+  isMobile
 } from "react-device-detect";
 import DickCanvas from "./components/dickcanvas/dickcanvas.jsx";
 import DickButton from "./components/dickbutton/dickbutton.jsx";
@@ -26,7 +27,7 @@ class App extends React.Component {
       Actions.resize();
     });
 
-    window.addEventListener('beforeunload', function (e){
+    window.addEventListener('beforeunload', function (e) {
       Actions.save();
     });
 
@@ -48,7 +49,52 @@ class App extends React.Component {
     }, false);
   }
 
+  renderLeftColumn() {
+    let col1Style = {
+      width: '20%'
+    }
+    if (!isMobile) {
+      return (
+        <div className="col" style={col1Style}>
+          <div>
+            <DickPreview css={'preview'} action={'readLast/0'} timeout={1000} />
+          </div>
+          <div>
+            <DickPreview css={'preview1'} action={'readLast/1'} timeout={2000} />
+          </div>
+          <div>
+            <DickPreview css={'preview2'} action={'readLast/2'} timeout={3000} />
+          </div>
+        </div>
+      )
+    }
+  }
+
+  renderRightColumn() {
+    let col1Style = {
+      width: '20%'
+    }
+    if (!isMobile) {
+      return (
+        <div className="col" style={col1Style}>
+          <div>
+            <DickPreview css={'preview3'} action={'readLast/3'} timeout={4000} />
+          </div>
+          <div>
+            <DickPreview css={'preview4'} action={'readLast/4'} timeout={5000} />
+          </div>
+          <div>
+            <DickPreview css={'preview5'} action={'readLast/5'} timeout={6000} />
+          </div>
+        </div>
+      )
+    }
+  }
+
   render() {
+    let col2Style = {
+      width: '60%'
+    }
     return (
       <div className='app'>
         <div>
@@ -60,55 +106,35 @@ class App extends React.Component {
             </div>
           </div>
           <div className="row">
-          <BrowserView>
-          <div className="col">
-              <div>
-                <DickPreview css={'preview'} action={'readLast/0'} timeout={1000}/>
-              </div>
-              <div>
-                <DickPreview css={'preview1'} action={'readLast/1'} timeout={2000}/>
-              </div>
-              <div>
-                <DickPreview css={'preview2'} action={'readLast/2'} timeout={3000}/>
-              </div>
-              <div>
-                <DickPreview css={'preview3'} action={'readLast/3'} timeout={4000}/>
-              </div>
-              <div>
-                <DickPreview css={'preview4'} action={'readLast/4'} timeout={5000}/>
-              </div>
-              <div>
-                <DickPreview css={'preview5'} action={'readLast/5'} timeout={6000}/>
-              </div>
-            </div>
-            </BrowserView>
-            <div className="col">
+            {this.renderLeftColumn()}
+            <div className="col" style={col2Style}>
               <div>
                 <DickCanvas />
               </div>
               <BrowserView>
-              <div className='bottomBar'>
-                <DickButton css='save' text='dickIT' action='save' />
-                <span style={{ marginLeft: this.state.marginBeetwenButtons }}></span>
-                <DickSelect css='drawSize' action='drawSize' options={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]} />
-                <span style={{ marginLeft: this.state.marginBeetwenButtons }}></span>
-                <StyleSelect css='setColor' action='setColor' options={[{ class: 'black', value: 'Black' }, { class: 'brown', value: 'Brown' }, { class: 'yellow', value: 'Yellow' }, { class: 'pink', value: 'Pink' }, { class: 'grey', value: 'Grey' }]} />
-                <span style={{ marginLeft: this.state.marginBeetwenButtons }}></span>
-                <DickButton css='clear' text='cleanIT' action='clear' />
-              </div>
+                <div className='bottomBar'>
+                  <DickButton css='save' text='dickIT' action='save' />
+                  <span style={{ marginLeft: this.state.marginBeetwenButtons }}></span>
+                  <DickSelect css='drawSize' action='drawSize' options={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]} />
+                  <span style={{ marginLeft: this.state.marginBeetwenButtons }}></span>
+                  <StyleSelect css='setColor' action='setColor' options={[{ class: 'black', value: 'Black' }, { class: 'brown', value: 'Brown' }, { class: 'yellow', value: 'Yellow' }, { class: 'pink', value: 'Pink' }, { class: 'grey', value: 'Grey' }]} />
+                  <span style={{ marginLeft: this.state.marginBeetwenButtons }}></span>
+                  <DickButton css='clear' text='cleanIT' action='clear' />
+                </div>
               </BrowserView>
               <MobileView>
-              <div className='bottomBar'>
-                <DickButton css='saveMobile' text='dickIT' action='save' />
-                <span style={{ marginLeft: this.state.marginBeetwenButtonsMobile }}></span>
-                <DickSelect css='drawSizeMobile' action='drawSize' options={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]} />
-                <span style={{ marginLeft: this.state.marginBeetwenButtonsMobile }}></span>
-                <StyleSelect css='setColorMobile' action='setColor' options={[{ class: 'black', value: 'Black' }, { class: 'brown', value: 'Brown' }, { class: 'yellow', value: 'Yellow' }, { class: 'pink', value: 'Pink' }, { class: 'grey', value: 'Grey' }]} />
-                <span style={{ marginLeft: this.state.marginBeetwenButtonsMobile }}></span>
-                <DickButton css='clearMobile' text='cleanIT' action='clear' />
-              </div>
+                <div className='bottomBar'>
+                  <DickButton css='saveMobile' text='dickIT' action='save' />
+                  <span style={{ marginLeft: this.state.marginBeetwenButtonsMobile }}></span>
+                  <DickSelect css='drawSizeMobile' action='drawSize' options={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]} />
+                  <span style={{ marginLeft: this.state.marginBeetwenButtonsMobile }}></span>
+                  <StyleSelect css='setColorMobile' action='setColor' options={[{ class: 'black', value: 'Black' }, { class: 'brown', value: 'Brown' }, { class: 'yellow', value: 'Yellow' }, { class: 'pink', value: 'Pink' }, { class: 'grey', value: 'Grey' }]} />
+                  <span style={{ marginLeft: this.state.marginBeetwenButtonsMobile }}></span>
+                  <DickButton css='clearMobile' text='cleanIT' action='clear' />
+                </div>
               </MobileView>
             </div>
+            {this.renderRightColumn()}
           </div>
         </div>
       </div>
