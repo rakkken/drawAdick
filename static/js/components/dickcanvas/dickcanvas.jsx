@@ -226,7 +226,7 @@ class DickCanvas extends React.Component {
             mode: 'draw',
             pen: 'up',
             lineWidth: 6,
-            penColor: 'black'
+            penColor: 'blue'
         });
 
         this.ctx = this.refs.canvas.getContext('2d');

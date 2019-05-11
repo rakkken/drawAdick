@@ -57,13 +57,13 @@ class App extends React.Component {
       return (
         <div className="col" style={col1Style}>
           <div>
-            <DickPreview css={'preview'} action={'read/0'} timeout={2000} />
+            <DickPreview css={'preview'} action={'read/0'} timeout={200} />
           </div>
           <div>
-            <DickPreview css={'preview1'} action={'read/1'} timeout={4000} />
+            <DickPreview css={'preview1'} action={'read/1'} timeout={400} />
           </div>
           <div>
-            <DickPreview css={'preview2'} action={'read/2'} timeout={6000} />
+            <DickPreview css={'preview2'} action={'read/2'} timeout={600} />
           </div>
         </div>
       )
@@ -78,13 +78,13 @@ class App extends React.Component {
       return (
         <div className="col" style={col1Style}>
           <div>
-            <DickPreview css={'preview3'} action={'read/3'} timeout={8000} />
+            <DickPreview css={'preview3'} action={'read/3'} timeout={800} />
           </div>
           <div>
-            <DickPreview css={'preview4'} action={'read/4'} timeout={10000} />
+            <DickPreview css={'preview4'} action={'read/4'} timeout={1000} />
           </div>
           <div>
-            <DickPreview css={'preview5'} action={'read/5'} timeout={12000} />
+            <DickPreview css={'preview5'} action={'read/5'} timeout={1200} />
           </div>
         </div>
       )
@@ -101,7 +101,7 @@ class App extends React.Component {
           <div className="row">
             <div className="col">
               <div className='topBar'>
-                <img src="static/graphics/g1678.png" alt="logo" className="logo" />
+                <img src="static/graphics/dad.png" alt="logo" className="logo" />
               </div>
             </div>
           </div>
@@ -117,7 +117,7 @@ class App extends React.Component {
                   <span style={{ marginLeft: this.state.marginBeetwenButtons }}></span>
                   <DickSelect css='drawSize' action='drawSize' options={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]} />
                   <span style={{ marginLeft: this.state.marginBeetwenButtons }}></span>
-                  <StyleSelect css='setColor' action='setColor' options={[{ class: 'black', value: 'Black' }, { class: 'brown', value: 'Brown' }, { class: 'yellow', value: 'Yellow' }, { class: 'pink', value: 'Pink' }, { class: 'grey', value: 'Grey' }]} />
+                  <StyleSelect css='setColor' action='setColor' options={[{ class: 'blue', value: 'Blue' }, { class: 'black', value: 'Black' }, { class: 'brown', value: 'Brown' }, { class: 'yellow', value: 'Yellow' }, { class: 'pink', value: 'Pink' }, { class: 'grey', value: 'Grey' }]} />
                   <span style={{ marginLeft: this.state.marginBeetwenButtons }}></span>
                   <DickButton css='clear' text='cleanIT' action='clear' />
                 </div>
