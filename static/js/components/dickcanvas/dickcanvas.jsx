@@ -13,13 +13,13 @@ class DickCanvas extends React.Component {
         this.saveInProgress = false;
         this.modX = 0;
         this.modY = 300;
-        this.aspectRatio = 1.333;
+        this.aspectRatio = 1.2;
         this.maxHeight = 80;
         this.brushSizeLimit = 12;
         this.strokeStyle = '#ffffff';
         //becouse of margin and top image
         this.mobileDeviceModX = 15;
-        this.mobileDeviceModY = 200;
+        this.mobileDeviceModY = 180;
 
         this.state = {
             width: document.body.clientWidth - this.modX,

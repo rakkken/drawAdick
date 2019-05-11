@@ -51,7 +51,7 @@ class App extends React.Component {
 
   renderLeftColumn() {
     let col1Style = {
-      width: '20%'
+      width: '19%'
     }
     if (!isMobile) {
       return (
@@ -72,7 +72,7 @@ class App extends React.Component {
 
   renderRightColumn() {
     let col1Style = {
-      width: '20%'
+      width: '19%'
     }
     if (!isMobile) {
       return (
@@ -127,7 +127,7 @@ class App extends React.Component {
                   <DickButton css='saveMobile' text='dickIT' action='save' />
                   <span style={{ marginLeft: this.state.marginBeetwenButtonsMobile }}></span>
                   <DickSelect css='drawSizeMobile' action='drawSize' options={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]} />
-                  <span style={{ marginLeft: this.state.marginBeetwenButtonsMobile }}></span>
+                  explBar      <span style={{ marginLeft: this.state.marginBeetwenButtonsMobile }}></span>
                   <StyleSelect css='setColorMobile' action='setColor' options={[{ class: 'black', value: 'Black' }, { class: 'brown', value: 'Brown' }, { class: 'yellow', value: 'Yellow' }, { class: 'pink', value: 'Pink' }, { class: 'grey', value: 'Grey' }]} />
                   <span style={{ marginLeft: this.state.marginBeetwenButtonsMobile }}></span>
                   <DickButton css='clearMobile' text='cleanIT' action='clear' />
@@ -135,6 +135,16 @@ class App extends React.Component {
               </MobileView>
             </div>
             {this.renderRightColumn()}
+          </div>
+          <div className="row">
+            <div className='explBar'>
+              <em className='explanation'><sup>Hello there, you probably wondering why someone done such stupid page. Simple answer is: FOR FUN</sup></em>
+            </div>
+          </div>
+          <div className="row">
+            <div className='explBar2'>
+              <em className='explanation'><sup>Little bit long answer is: to easier gather dicks drowings used for neural network learning, still just for FUN. So lets draw some dicks ;)</sup></em>
+            </div>
           </div>
         </div>
       </div>

@@ -2,11 +2,11 @@
     display: table;
     margin-left: auto;
     margin-right: auto;
-    width: 100%;
+    width: 98%;
 }
 
 .logo {
-    max-height: 200px;
+    max-height: 180px;
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -16,4 +16,20 @@
 .bottomBar {
     margin: auto;
     display: table;
+}
+
+.explBar {
+    padding-top: 25px;
+    margin: auto;
+    display: table;
+}
+
+.explBar2 {
+    padding-top: 10px;
+    margin: auto;
+    display: table;
+}
+
+.explanation {
+    color: gray;
 }
