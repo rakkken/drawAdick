@@ -57,13 +57,13 @@ class App extends React.Component {
       return (
         <div className="col" style={col1Style}>
           <div>
-            <DickPreview css={'preview'} action={'read/0'} timeout={200} />
+            <DickPreview css={'preview'} action={'read/0'} timeout={1200} />
           </div>
           <div>
-            <DickPreview css={'preview1'} action={'read/1'} timeout={400} />
+            <DickPreview css={'preview1'} action={'read/1'} timeout={1400} />
           </div>
           <div>
-            <DickPreview css={'preview2'} action={'read/2'} timeout={600} />
+            <DickPreview css={'preview2'} action={'read/2'} timeout={1600} />
           </div>
         </div>
       )
@@ -78,13 +78,13 @@ class App extends React.Component {
       return (
         <div className="col" style={col1Style}>
           <div>
-            <DickPreview css={'preview3'} action={'read/3'} timeout={800} />
+            <DickPreview css={'preview3'} action={'read/3'} timeout={1800} />
           </div>
           <div>
-            <DickPreview css={'preview4'} action={'read/4'} timeout={1000} />
+            <DickPreview css={'preview4'} action={'read/4'} timeout={2000} />
           </div>
           <div>
-            <DickPreview css={'preview5'} action={'read/5'} timeout={1200} />
+            <DickPreview css={'preview5'} action={'read/5'} timeout={2200} />
           </div>
         </div>
       )
