@@ -29,12 +29,18 @@ def save():
     db.session.commit()
     return 'success'
 
-@app.route('/readLast/<id>', methods=['POST'])
-def readLast(id):
-    sql = text("select encode(img::bytea, 'escape') from images order by id desc limit 6")
-    result = db.engine.execute(sql)
-    img = [row[0] for row in result]
+@app.route('/read/<id>', methods=['POST'])
+def read(id):
+    sqlLastIds = text("select id from images order by id desc limit 6")
+    result = db.engine.execute(sqlLastIds)
+    ids = [row[0] for row in result]
     _id = int(id)
     if _id > 5:
         _id = 5
-    return abort(404) if len(img) < _id else img[_id]
+    if len(ids) < _id:
+        return abort(404)
+    imgId = ids[_id]
+    sql = text("select encode(img::bytea, 'escape') from images where id = " + str(imgId))
+    result = db.engine.execute(sql)
+    img = [row[0] for row in result]
+    return img[0]
