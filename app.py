@@ -2,6 +2,7 @@ import os
 from flask import Flask, abort
 from flask import request
 from flask import render_template
+from flask import Response
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import text
 from flask_wtf.csrf import CSRFProtect
@@ -43,4 +44,4 @@ def read(id):
     sql = text("select encode(img::bytea, 'escape') from images where id = " + str(imgId))
     result = db.engine.execute(sql)
     img = [row[0] for row in result]
-    return img[0]
+    return Response(img[0], mimetype='text/plain')
