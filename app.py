@@ -30,7 +30,7 @@ def save():
     db.session.commit()
     return 'success'
 
-@app.route('/read/<id>', methods=['POST'])
+@app.route('/read/<id>', methods=['GET'])
 def read(id):
     sqlLastIds = text("select id from images order by id desc limit 6")
     result = db.engine.execute(sqlLastIds)
