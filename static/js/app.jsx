@@ -20,6 +20,11 @@ class App extends React.Component {
       marginBeetwenButtons: '5px',
       marginBeetwenButtonsMobile: '30px'
     }
+
+
+    this.colStyle = {
+      width: 'auto'
+    };
   }
 
   componentDidMount() {
@@ -50,12 +55,9 @@ class App extends React.Component {
   }
 
   renderLeftColumn() {
-    let col1Style = {
-      width: '19%'
-    }
     if (!isMobile) {
       return (
-        <div className="col" style={col1Style}>
+        <div className="col" style={this.colStyle}>
           <div>
             <DickPreview css={'preview'} action={'read/0'} timeout={1200} />
           </div>
@@ -71,12 +73,9 @@ class App extends React.Component {
   }
 
   renderRightColumn() {
-    let col1Style = {
-      width: '19%'
-    }
     if (!isMobile) {
       return (
-        <div className="col" style={col1Style}>
+        <div className="col" style={this.colStyle}>
           <div>
             <DickPreview css={'preview3'} action={'read/3'} timeout={1800} />
           </div>
@@ -92,9 +91,6 @@ class App extends React.Component {
   }
 
   render() {
-    let col2Style = {
-      width: '60%'
-    }
     return (
       <div className='app'>
         <div>
@@ -107,7 +103,7 @@ class App extends React.Component {
           </div>
           <div className="row">
             {this.renderLeftColumn()}
-            <div className="col" style={col2Style}>
+            <div className="col" style={this.colStyle}>
               <div>
                 <DickCanvas />
               </div>
