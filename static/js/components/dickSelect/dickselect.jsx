@@ -32,7 +32,6 @@ class DickSelect extends React.Component {
                 }
                 break;
             case Constants.CLEAR_CANVAS:
-                this.reset();
                 break;
         }
     }

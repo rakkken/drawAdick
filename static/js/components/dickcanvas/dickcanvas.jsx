@@ -24,7 +24,9 @@ class DickCanvas extends React.Component {
 
         this.state = {
             width: document.body.clientWidth - this.modX,
-            height: document.body.clientHeight - this.modY
+            height: document.body.clientHeight - this.modY,
+            penColor: 'blue',
+            lineWidth: 6
         }
         Dispatcher.register(this._registerToActions.bind(this));
     }
@@ -137,7 +139,7 @@ class DickCanvas extends React.Component {
         });
     }
 
-    drawingMouse(e) { //if the pen is down in the canvas, draw/erase
+    drawingMouse(e) {
         e.preventDefault();
 
         if (this.state.pen === 'down') {
@@ -146,14 +148,7 @@ class DickCanvas extends React.Component {
             this.ctx.lineWidth = this.state.lineWidth
             this.ctx.lineCap = 'round';
 
-
-            if (this.state.mode === 'draw') {
-                this.ctx.strokeStyle = this.state.penColor
-            }
-
-            if (this.state.mode === 'erase') {
-                this.ctx.strokeStyle = this.strokeStyle
-            }
+            this.ctx.strokeStyle = this.state.penColor
 
             this.ctx.moveTo(this.state.penCoords[0], this.state.penCoords[1])
             this.ctx.lineTo(e.nativeEvent.offsetX, e.nativeEvent.offsetY)
@@ -195,7 +190,7 @@ class DickCanvas extends React.Component {
         this.ctx.moveTo(x, y)
     }
 
-    up() { //mouse is up on the canvas
+    up() {
         this.setState({
             pen: 'up'
         });
@@ -217,20 +212,13 @@ class DickCanvas extends React.Component {
         }
     }
 
-    setColor(c) { //a color button was clicked
+    setColor(c) {
         this.setState({
             penColor: c
         });
     }
 
-    reset() { //clears it to all white, resets state to original
-        this.setState({
-            mode: 'draw',
-            pen: 'up',
-            lineWidth: 6,
-            penColor: 'blue'
-        });
-
+    reset() {
         this.ctx = this.refs.canvas.getContext('2d');
         this.ctx.fillStyle = "white";
         this.ctx.fillRect(0, 0, this.state.width, this.state.height);

@@ -18,7 +18,6 @@ class StyleSelect extends React.Component {
     _registerToActions(action) {
         switch (action.actionType) {
             case Constants.CLEAR_CANVAS:
-                this.reset();
                 break;
         }
     }
