@@ -143,8 +143,23 @@ class App extends React.Component {
               <em className='explanation'><sup>Little bit long answer is: to easier gather dicks drowings used for neural network learning, still just for FUN. So lets draw some dicks ;)</sup></em>
             </div>
           </div>
+          <MobileView>
+            <div className="row">
+              <div className='mobilePreview'>
+                <div className='col'>
+                  <DickPreview css={'mobilePreviewSize'} action={'read/0'} timeout={1200} />
+                </div>
+                <div>
+                  <DickPreview css={'mobilePreviewSize'} action={'read/1'} timeout={1400} />
+                </div>
+                <div>
+                  <DickPreview css={'mobilePreviewSize'} action={'read/2'} timeout={1600} />
+                </div>
+              </div>
+            </div>
+          </MobileView>
           <div>
-            <ToastsContainer store={ToastsStore} position={ToastsContainerPosition.TOP_LEFT}/>
+            <ToastsContainer store={ToastsStore} position={ToastsContainerPosition.TOP_LEFT} />
           </div>
         </div>
       </div>

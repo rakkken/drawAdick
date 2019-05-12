@@ -59,7 +59,7 @@ class DickSelect extends React.Component {
     }
 
     drawOption(value) {
-        return <option key={value} value={value}>{value}</option>
+        return <option key={value} value={value}>{'Size: '+value}</option>
     }
 
     drawOptions() {

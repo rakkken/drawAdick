@@ -37,7 +37,7 @@ class StyleSelect extends React.Component {
     }
 
     drawOption(obj) {
-        return <option className={obj.class} key={obj.class} value={obj.class}></option>
+        return <option className={obj.class} key={obj.class} value={obj.class}>{obj.class}</option>
     }
 
     drawOptions() {
