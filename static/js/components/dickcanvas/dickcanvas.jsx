@@ -144,7 +144,7 @@ class DickCanvas extends React.Component {
 
         if (this.state.pen === 'down') {
 
-            this.ctx.beginPath()
+            this.ctx.beginPath();
             this.ctx.lineWidth = this.state.lineWidth
             this.ctx.lineCap = 'round';
 
@@ -157,6 +157,7 @@ class DickCanvas extends React.Component {
             this.setState({
                 penCoords: [e.nativeEvent.offsetX, e.nativeEvent.offsetY]
             });
+            this.ctx.closePath();
         }
     }
 
@@ -168,6 +169,8 @@ class DickCanvas extends React.Component {
             pen: 'down',
             penCoords: [x, y]
         });
+        this.ctx.strokeStyle = this.state.penColor
+        this.ctx.lineWidth = this.state.lineWidth
         this.ctx.lineTo(x, y);
         this.ctx.stroke();
     }

@@ -125,7 +125,7 @@ class App extends React.Component {
                   <span style={{ marginLeft: this.state.marginBeetwenButtonsMobile }}></span>
                   <DickSelect css='drawSizeMobile' action='drawSize' options={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]} />
                   <span style={{ marginLeft: this.state.marginBeetwenButtonsMobile }}></span>
-                  <StyleSelect css='setColorMobile' action='setColor' options={[{ class: 'black', value: 'Black' }, { class: 'brown', value: 'Brown' }, { class: 'yellow', value: 'Yellow' }, { class: 'pink', value: 'Pink' }, { class: 'grey', value: 'Grey' }, { class: 'white', value: 'White' }]} />
+                  <StyleSelect css='setColorMobile' action='setColor' options={[{ class: 'blue', value: 'Blue' }, { class: 'black', value: 'Black' }, { class: 'brown', value: 'Brown' }, { class: 'yellow', value: 'Yellow' }, { class: 'pink', value: 'Pink' }, { class: 'grey', value: 'Grey' }, { class: 'white', value: 'White' }]} />
                   <span style={{ marginLeft: this.state.marginBeetwenButtonsMobile }}></span>
                   <DickButton css='clearMobile' text='Clear' action='clear' />
                 </div>
