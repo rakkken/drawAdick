@@ -14,7 +14,7 @@ class DickCanvas extends React.Component {
         this.saveInProgress = false;
         this.modX = 0;
         this.modY = 300;
-        this.aspectRatio = 1.2;
+        this.aspectRatio = 1.333;
         this.maxHeight = 80;
         this.brushSizeLimit = 12;
         this.strokeStyle = '#ffffff';
@@ -240,7 +240,7 @@ class DickCanvas extends React.Component {
     render() {
         var w = this.state.width;
         var h = this.state.height;
-        var aspectRatio = 1.333;
+        var aspectRatio = this.aspectRatio;
         var nh = w / aspectRatio;
         if (nh > h) {
             nh = h;
