@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from 'react-dom';
+import { ToastsStore } from 'react-toasts';
 import axios from 'axios';
 import Dispatcher from '../../utils/dispatcher.jsx';
 import Actions from '../../utils/constants.jsx'
@@ -71,6 +72,7 @@ class DickCanvas extends React.Component {
                 data: this.getImageDataAsIMG()
             }).then(res => {
                 this.saveInProgress = false;
+                ToastsStore.success("Thank you!")
             }).catch(error => {
                 this.saveInProgress = false;
             });
@@ -123,13 +125,13 @@ class DickCanvas extends React.Component {
         ReactDOM.findDOMNode(this).addEventListener('wheel', this.wheel);
     }
 
-    draw(e) { //response to Draw button click 
+    draw(e) {
         this.setState({
             mode: 'draw'
         });
     }
 
-    erase() { //response to Erase button click
+    erase() {
         this.setState({
             mode: 'erase'
         });
@@ -232,6 +234,7 @@ class DickCanvas extends React.Component {
         this.ctx = this.refs.canvas.getContext('2d');
         this.ctx.fillStyle = "white";
         this.ctx.fillRect(0, 0, this.state.width, this.state.height);
+        ToastsStore.info("Cleared")
     }
 
     render() {

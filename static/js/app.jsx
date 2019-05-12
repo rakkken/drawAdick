@@ -4,6 +4,7 @@ import {
   MobileView,
   isMobile
 } from "react-device-detect";
+import { ToastsContainer, ToastsStore, ToastsContainerPosition } from 'react-toasts';
 import DickCanvas from "./components/dickcanvas/dickcanvas.jsx";
 import DickButton from "./components/dickbutton/dickbutton.jsx";
 import Actions from './utils/actions.jsx';
@@ -18,7 +19,7 @@ class App extends React.Component {
     super(props)
     this.state = {
       marginBeetwenButtons: '5px',
-      marginBeetwenButtonsMobile: '30px'
+      marginBeetwenButtonsMobile: '15px'
     }
 
 
@@ -113,7 +114,7 @@ class App extends React.Component {
                   <span style={{ marginLeft: this.state.marginBeetwenButtons }}></span>
                   <DickSelect css='drawSize' action='drawSize' options={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]} />
                   <span style={{ marginLeft: this.state.marginBeetwenButtons }}></span>
-                  <StyleSelect css='setColor' action='setColor' options={[{ class: 'blue', value: 'Blue' }, { class: 'black', value: 'Black' }, { class: 'brown', value: 'Brown' }, { class: 'yellow', value: 'Yellow' }, { class: 'pink', value: 'Pink' }, { class: 'grey', value: 'Grey' }]} />
+                  <StyleSelect css='setColor' action='setColor' options={[{ class: 'blue', value: 'Blue' }, { class: 'black', value: 'Black' }, { class: 'brown', value: 'Brown' }, { class: 'yellow', value: 'Yellow' }, { class: 'pink', value: 'Pink' }, { class: 'grey', value: 'Grey' }, { class: 'white', value: 'White' }]} />
                   <span style={{ marginLeft: this.state.marginBeetwenButtons }}></span>
                   <DickButton css='clear' text='cleanIT' action='clear' />
                 </div>
@@ -123,8 +124,8 @@ class App extends React.Component {
                   <DickButton css='saveMobile' text='dickIT' action='save' />
                   <span style={{ marginLeft: this.state.marginBeetwenButtonsMobile }}></span>
                   <DickSelect css='drawSizeMobile' action='drawSize' options={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]} />
-                  explBar      <span style={{ marginLeft: this.state.marginBeetwenButtonsMobile }}></span>
-                  <StyleSelect css='setColorMobile' action='setColor' options={[{ class: 'black', value: 'Black' }, { class: 'brown', value: 'Brown' }, { class: 'yellow', value: 'Yellow' }, { class: 'pink', value: 'Pink' }, { class: 'grey', value: 'Grey' }]} />
+                  <span style={{ marginLeft: this.state.marginBeetwenButtonsMobile }}></span>
+                  <StyleSelect css='setColorMobile' action='setColor' options={[{ class: 'black', value: 'Black' }, { class: 'brown', value: 'Brown' }, { class: 'yellow', value: 'Yellow' }, { class: 'pink', value: 'Pink' }, { class: 'grey', value: 'Grey' }, { class: 'white', value: 'White' }]} />
                   <span style={{ marginLeft: this.state.marginBeetwenButtonsMobile }}></span>
                   <DickButton css='clearMobile' text='cleanIT' action='clear' />
                 </div>
@@ -141,6 +142,9 @@ class App extends React.Component {
             <div className='explBar2'>
               <em className='explanation'><sup>Little bit long answer is: to easier gather dicks drowings used for neural network learning, still just for FUN. So lets draw some dicks ;)</sup></em>
             </div>
+          </div>
+          <div>
+            <ToastsContainer store={ToastsStore} position={ToastsContainerPosition.TOP_LEFT}/>
           </div>
         </div>
       </div>
