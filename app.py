@@ -3,6 +3,7 @@ from flask import Flask, abort, session
 from flask import request
 from flask import render_template
 from flask import Response
+from flask import send_from_directory
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import text
 from flask_wtf.csrf import CSRFProtect
@@ -21,6 +22,11 @@ from models import Images
 @app.route('/')
 def root():
     return render_template('index.html')
+
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'static'),
+                               'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
 @app.route('/save', methods=['POST'])
 def save():
