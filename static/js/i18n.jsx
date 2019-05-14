@@ -8,9 +8,8 @@ i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
-    preload: ['pl-PL', 'pl'],
     fallbackLng: 'en',
-    debug: true,
+    debug: false,
     backend: {
         loadPath: 'static/dist/locales/{{lng}}/{{ns}}.json'
     },
