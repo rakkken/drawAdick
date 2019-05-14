@@ -74,7 +74,7 @@ class DickCanvas extends React.Component {
                 data: this.getImageDataAsIMG()
             }).then(res => {
                 this.saveInProgress = false;
-                ToastsStore.success("Thank you!")
+                ToastsStore.success(this.props.i18n.t("Thanks!"))
             }).catch(error => {
                 this.saveInProgress = false;
             });
@@ -225,7 +225,7 @@ class DickCanvas extends React.Component {
         this.ctx = this.refs.canvas.getContext('2d');
         this.ctx.fillStyle = "white";
         this.ctx.fillRect(0, 0, this.state.width, this.state.height);
-        ToastsStore.info("Cleared")
+        ToastsStore.info(this.props.i18n.t("Cleared"))
     }
 
     render() {

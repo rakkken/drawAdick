@@ -31,6 +31,9 @@ def favicon():
 @app.route('/save', methods=['POST'])
 def save():
     data = request.data
+    length = len(data)
+    if length < 100 or length > 1000000 or str(data)[0::-length] != 'b' or request.content_type != 'application/upload':
+        abort(400)
     img = Images(data, False)
     db.session.add(img)
     db.session.commit()

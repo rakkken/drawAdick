@@ -5,6 +5,7 @@ import {
   isMobile
 } from "react-device-detect";
 import { ToastsContainer, ToastsStore, ToastsContainerPosition } from 'react-toasts';
+import { withNamespaces, WithNamespaces } from 'react-i18next';
 import DickCanvas from "./components/dickcanvas/dickcanvas.jsx";
 import DickButton from "./components/dickbutton/dickbutton.jsx";
 import Actions from './utils/actions.jsx';
@@ -92,6 +93,7 @@ class App extends React.Component {
   }
 
   render() {
+    const { t, i18n } = this.props;
     return (
       <div className='app'>
         <div>
@@ -106,28 +108,28 @@ class App extends React.Component {
             {this.renderLeftColumn()}
             <div className="col" style={this.colStyle}>
               <div>
-                <DickCanvas />
+                <DickCanvas i18n={i18n}/>
               </div>
               <BrowserView>
                 <div className='bottomBar'>
-                  <DickButton css='save' text='Save' action='save' />
+                  <DickButton css='save' text={i18n.t('Save')} action='save' />
                   <span style={{ marginLeft: this.state.marginBeetwenButtons }}></span>
                   <DickSelect css='drawSize' action='drawSize' options={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]} />
                   <span style={{ marginLeft: this.state.marginBeetwenButtons }}></span>
                   <StyleSelect css='setColor' action='setColor' options={[{ class: 'blue', value: 'Blue' }, { class: 'black', value: 'Black' }, { class: 'brown', value: 'Brown' }, { class: 'yellow', value: 'Yellow' }, { class: 'pink', value: 'Pink' }, { class: 'grey', value: 'Grey' }, { class: 'white', value: 'White' }]} />
                   <span style={{ marginLeft: this.state.marginBeetwenButtons }}></span>
-                  <DickButton css='clear' text='Clear' action='clear' />
+                  <DickButton css='clear' text={i18n.t('Clear')} action='clear' />
                 </div>
               </BrowserView>
               <MobileView>
                 <div className='bottomBar'>
-                  <DickButton css='saveMobile' text='Save' action='save' />
+                  <DickButton css='saveMobile' text={i18n.t('Save')} action='save' />
                   <span style={{ marginLeft: this.state.marginBeetwenButtonsMobile }}></span>
                   <DickSelect css='drawSizeMobile' action='drawSize' options={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]} />
                   <span style={{ marginLeft: this.state.marginBeetwenButtonsMobile }}></span>
                   <StyleSelect css='setColorMobile' action='setColor' options={[{ class: 'blue', value: 'Blue' }, { class: 'black', value: 'Black' }, { class: 'brown', value: 'Brown' }, { class: 'yellow', value: 'Yellow' }, { class: 'pink', value: 'Pink' }, { class: 'grey', value: 'Grey' }, { class: 'white', value: 'White' }]} />
                   <span style={{ marginLeft: this.state.marginBeetwenButtonsMobile }}></span>
-                  <DickButton css='clearMobile' text='Clear' action='clear' />
+                  <DickButton css='clearMobile' text={i18n.t('Clear')} action='clear' />
                 </div>
               </MobileView>
             </div>
@@ -135,12 +137,17 @@ class App extends React.Component {
           </div>
           <div className="row">
             <div className='explBar'>
-              <em className='explanation'><sup>Hello there, you probably wondering why someone done such stupid page. Simple answer is: FOR FUN</sup></em>
+              <em className='explanation'><sup>{i18n.t('exp1')}</sup></em>
             </div>
           </div>
           <div className="row">
             <div className='explBar2'>
-              <em className='explanation'><sup>Little bit long answer is: to easier gather dicks drowings used for neural network learning, still just for FUN. So lets draw some dicks ;)</sup></em>
+              <em className='explanation'><sup>{i18n.t('exp2')}</sup></em>
+            </div>
+          </div>
+          <div className="row">
+            <div className='explBar2'>
+              <em className='explanation'><sup>{i18n.t('exp3')}</sup></em>
             </div>
           </div>
           <MobileView>
@@ -167,4 +174,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default (App);
