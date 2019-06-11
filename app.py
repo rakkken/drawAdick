@@ -54,3 +54,10 @@ def read(id):
     result = db.engine.execute(sql)
     img = [row[0] for row in result]
     return Response(img[0], mimetype='text/plain')
+
+@app.route('/count', methods=['GET'])
+def count():
+    sqlCount = text("select count(*) from images")
+    result = db.engine.execute(sqlCount)
+    count = [row[0] for row in result]
+    return Response(str(count[0]), mimetype='text/plain')

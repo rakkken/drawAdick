@@ -13,6 +13,7 @@ import '../styles/app.scss'
 import DickSelect from "./components/dickSelect/dickselect.jsx";
 import StyleSelect from "./components/dickSelect/styleselect.jsx";
 import DickPreview from "./components/dickpreview/dickpreview.jsx";
+import axios from 'axios';
 
 class App extends React.Component {
 
@@ -28,6 +29,23 @@ class App extends React.Component {
       width: 'auto'
     };
   }
+
+  count() {
+    axios({
+        method: 'get',
+        url: '/count',
+        headers: { "X-CSRFToken": csrf_token },
+        data: {}
+    }).then(res => {
+        this.setState({
+            counter: res.data
+        });
+    }).catch(error => {
+        this.setState({
+          counter: 'unknown'
+        });
+    });
+}
 
   componentDidMount() {
     window.addEventListener('resize', function (e) {
@@ -54,6 +72,8 @@ class App extends React.Component {
         e.preventDefault();
       }
     }, { passive: false });
+
+    this.count();
   }
 
   renderLeftColumn() {
@@ -107,6 +127,7 @@ class App extends React.Component {
           <div className="row">
             {this.renderLeftColumn()}
             <div className="col" style={this.colStyle}>
+              <div className="counter">{this.state.counter}</div>
               <div>
                 <DickCanvas i18n={i18n}/>
               </div>
