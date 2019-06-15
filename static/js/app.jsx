@@ -120,7 +120,7 @@ class App extends React.Component {
           <div className="row">
             <div className="col">
               <div className='topBar'>
-                <img src="static/graphics/dad.png" alt="logo" className="logo" />
+                <img src="static/graphics/dad.png" alt="logo draw a dick aka narysuj kutasa" className="logo" />
               </div>
             </div>
           </div>
