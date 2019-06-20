@@ -23,7 +23,7 @@ class DickPreview extends React.Component {
 
     _registerToActions(action) {
         switch (action.actionType) {
-            case Constants.SAVE_DATA:
+            case Constants.RELOAD_PREVIEW:
                 this.loadTimeouted();
                 break;
         }

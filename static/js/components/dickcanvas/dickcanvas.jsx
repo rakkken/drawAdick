@@ -75,6 +75,10 @@ class DickCanvas extends React.Component {
             }).then(res => {
                 this.saveInProgress = false;
                 ToastsStore.success(this.props.i18n.t("Thanks!"))
+                Dispatcher.dispatch({
+                    actionType: Actions.RELOAD_PREVIEW,
+                    payload: null
+                });
             }).catch(error => {
                 this.saveInProgress = false;
             });
