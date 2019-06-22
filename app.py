@@ -37,7 +37,7 @@ def save():
     img = Images(data, False)
     db.session.add(img)
     db.session.commit()
-    return 'success'
+    return Response(mCount(), mimetype='text/plain')
 
 @app.route('/read/<id>', methods=['GET'])
 def read(id):
@@ -57,7 +57,10 @@ def read(id):
 
 @app.route('/count', methods=['GET'])
 def count():
+    return Response(mCount(), mimetype='text/plain')
+
+def mCount():
     sqlCount = text("select count(*) from images")
     result = db.engine.execute(sqlCount)
     count = [row[0] for row in result]
-    return Response(str(count[0]), mimetype='text/plain')
+    str(count[0])
