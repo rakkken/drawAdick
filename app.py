@@ -63,4 +63,4 @@ def mCount():
     sqlCount = text("select count(*) from images")
     result = db.engine.execute(sqlCount)
     count = [row[0] for row in result]
-    str(count[0])
+    return str(count[0])
