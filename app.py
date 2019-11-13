@@ -4,9 +4,12 @@ from flask import request
 from flask import render_template
 from flask import Response
 from flask import send_from_directory
+from flask import send_file
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import text
 from flask_wtf.csrf import CSRFProtect
+from io import BytesIO
+import zipfile
 import base64
 
 app = Flask(__name__)
@@ -64,3 +67,21 @@ def mCount():
     result = db.engine.execute(sqlCount)
     count = [row[0] for row in result]
     return str(count[0])
+
+@app.route('/all/<password>', methods=['GET'])
+def all(password):
+    if password != 'kutas':
+        return Response('Get lost!', mimetype='text/plain')
+    sql = text("select encode(img::bytea, 'escape') from images")
+    result = db.engine.execute(sql)
+    memory_file = BytesIO()
+    with zipfile.ZipFile(memory_file, 'w') as zf:
+        for counter,row in enumerate(result):
+            name = "dick_"+str(counter)+".jpg"
+            data = zipfile.ZipInfo(name)
+            data.compress_type = zipfile.ZIP_DEFLATED
+            zf.writestr(data, base64.b64decode(row[0].split(',')[1]))
+    memory_file.seek(0)
+    return send_file(memory_file, mimetype='application/zip',
+        as_attachment=True,
+        attachment_filename='dicks.zip')
